@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "numeralping",
+  "version": "${version}",
+  "name": "Numeral Ping",
+  "description": "Display players' ping in the tab list.",
+  "authors": [
+	"mcblueparrot"
+  ],
+  "contact": {
+	"website": "https://www.curseforge.com/minecraft/mc-mods/numeral-ping",
+	"repo": "https://github.com/TheKodeToad/NumeralPing"
+  },
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+	"client": [
+	  "me.mcblueparrot.numeralping.NumeralPingMod"
+	],
+	"modmenu": [
+	  "me.mcblueparrot.numeralping.integration.ModMenuIntegration"
+	]
+  },
+  "mixins": [
+	"numeralping.mixins.json"
+  ],
+  "depends": {
+	"fabricloader": ">=0.12.12",
+	"fabric": "*",
+	"minecraft": "1.18.1"
+  }
+}
