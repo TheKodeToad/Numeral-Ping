@@ -1,6 +1,7 @@
 package me.mcblueparrot.numeralping.mixin;
 
 import me.mcblueparrot.numeralping.NumeralPingMod;
+import me.mcblueparrot.numeralping.config.NumeralConfig;
 import me.mcblueparrot.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
@@ -24,14 +25,16 @@ public class MixinPlayerListHud extends DrawableHelper {
 	@Inject(method = "renderLatencyIcon", at = @At("HEAD"), cancellable = true)
 	public void renderDetailedLatency(MatrixStack matrices, int width, int x, int y, PlayerListEntry entry,
 									  CallbackInfo callback) {
-		if(NumeralPingMod.INSTANCE.getConfig().enabled) {
+		NumeralConfig config = NumeralPingMod.INSTANCE.getConfig();
+
+		if(config.enabled) {
 			callback.cancel();
 
-			String pingString = Utils.unicodeShift(Integer.toString(entry.getLatency()), 8272);
+			String pingString = Utils.unicodeShift(Integer.toString(entry.getLatency()), config.smallPing ? 8272 : 0);
 
 			setZOffset(getZOffset() + 100);
 			drawStringWithShadow(matrices, client.textRenderer, pingString, x + width -
-					client.textRenderer.getWidth(pingString) - 1, y - 2, Utils.getPingGrade(entry.getLatency()));
+					client.textRenderer.getWidth(pingString) - 1, y - (config.smallPing ? 2 : 0), Utils.getPingGrade(entry.getLatency()));
 			setZOffset(getZOffset() - 100);
 		}
 	}

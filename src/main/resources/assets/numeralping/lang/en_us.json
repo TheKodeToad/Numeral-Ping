@@ -6,5 +6,6 @@
   "text.autoconfig.numeralping.option.levelTwoPingColour": "Level 2 Ping",
   "text.autoconfig.numeralping.option.levelThreePingColour": "Level 3 Ping",
   "text.autoconfig.numeralping.option.levelFourPingColour": "Level 4 Ping",
-  "text.autoconfig.numeralping.option.levelFivePingColour": "Level 5 Ping"
+  "text.autoconfig.numeralping.option.levelFivePingColour": "Level 5 Ping",
+  "text.autoconfig.numeralping.option.smallPing": "Small Ping"
 }

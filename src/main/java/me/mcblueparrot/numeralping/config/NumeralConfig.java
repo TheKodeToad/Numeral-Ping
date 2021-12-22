@@ -25,4 +25,7 @@ public class NumeralConfig implements ConfigData {
 	@ConfigEntry.ColorPicker
 	public int levelFivePingColour = levelFourPingColour;
 
+	@Comment("Shrink ping text")
+	public boolean smallPing = true;
+
 }
