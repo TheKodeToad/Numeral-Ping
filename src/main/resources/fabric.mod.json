@@ -3,7 +3,7 @@
   "id": "numeralping",
   "version": "${version}",
   "name": "Numeral Ping",
-  "description": "Display players' ping in the tab list.",
+  "description": "Display the ping of each player in the tab list.",
   "authors": [
 	"mcblueparrot"
   ],
