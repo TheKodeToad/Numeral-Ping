@@ -5,29 +5,33 @@
   "name": "Numeral Ping",
   "description": "Display the ping of each player in the tab list.",
   "authors": [
-	"mcblueparrot"
+    "mcblueparrot"
   ],
   "icon": "assets/numeralping/icon.png",
   "contact": {
-	"website": "https://www.curseforge.com/minecraft/mc-mods/numeral-ping",
-	"repo": "https://github.com/TheKodeToad/Numeral-Ping"
+    "homepage": "https://www.curseforge.com/minecraft/mc-mods/numeral-ping",
+    "sources": "https://github.com/TheKodeToad/Numeral-Ping",
+    "issues": "https://github.com/TheKodeToad/Numeral-Ping/issues"
   },
   "license": "MIT",
   "environment": "client",
   "entrypoints": {
-	"client": [
-	  "me.mcblueparrot.numeralping.NumeralPingMod"
-	],
-	"modmenu": [
-	  "me.mcblueparrot.numeralping.integration.ModMenuIntegration"
-	]
+    "client": [
+      "me.mcblueparrot.numeralping.NumeralPingMod"
+    ],
+    "modmenu": [
+      "me.mcblueparrot.numeralping.integration.ModMenuIntegration"
+    ]
   },
   "mixins": [
-	"numeralping.mixins.json"
+    "numeralping.mixins.json"
   ],
   "depends": {
-	"fabricloader": ">=0.12.12",
-	"fabric": "*",
-	"minecraft": "1.18.1"
+    "fabricloader": ">=0.12.12",
+    "fabric": "*",
+    "minecraft": "1.18.1"
+  },
+  "suggests": {
+    "cloth-config": "*"
   }
 }
