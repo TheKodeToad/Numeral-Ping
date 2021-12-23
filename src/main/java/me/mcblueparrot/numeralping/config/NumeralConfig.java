@@ -1,6 +1,5 @@
 package me.mcblueparrot.numeralping.config;
 
-import jdk.jfr.Description;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
