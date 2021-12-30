@@ -5,7 +5,8 @@
   "name": "Numeral Ping",
   "description": "Display the ping of each player in the tab list.",
   "authors": [
-    "mcblueparrot"
+    "mcblueparrot",
+    "thaumiel9"
   ],
   "icon": "assets/numeralping/icon.png",
   "contact": {
