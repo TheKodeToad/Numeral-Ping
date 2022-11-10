@@ -1,8 +1,0 @@
-{
-  "numeralping.option.defaultPingColour": "Ping < 150 Colour",
-  "numeralping.option.levelOnePingColour": "Ping < 300 Colour",
-  "numeralping.option.levelTwoPingColour": "Ping < 600 Colour",
-  "numeralping.option.levelThreePingColour": "Ping < 1000 Colour",
-  "numeralping.option.levelFourPingColour": "Ping ≥ 1000 Colour",
-  "numeralping.option.levelFivePingColour": "Timed Out Ping Colour"
-}

@@ -13,35 +13,30 @@ import net.minecraft.client.network.PlayerListEntry;
 import net.minecraft.client.util.math.MatrixStack;
 
 @Mixin(PlayerListHud.class)
-public class MixinPlayerListHud extends DrawableHelper {
-
-	@Shadow
-	@Final
-	private MinecraftClient client;
+public class PlayerListHudMixin extends DrawableHelper {
 
 	@Inject(method = "renderLatencyIcon", at = @At("HEAD"), cancellable = true)
 	public void renderDetailedLatency(MatrixStack matrices, int width, int x, int y, PlayerListEntry entry,
 			CallbackInfo callback) {
 		NumeralConfig config = NumeralConfig.instance();
 
-		if(config.enabled) {
+		if(config.playerList) {
 			callback.cancel();
 
 			String pingString = Integer.toString(entry.getLatency());
-
-			if(config.smallPing) {
-				// based on numeric ping
-				pingString = Utils.unicodeShift(pingString, 8272);
-			}
+			pingString = config.shiftPing(pingString);
 
 			setZOffset(getZOffset() + 100);
 
 			drawStringWithShadow(matrices, client.textRenderer, pingString,
 					x + width - client.textRenderer.getWidth(pingString) - 1, y - (config.smallPing ? 2 : 0),
-					Utils.getPingGrade(entry.getLatency()));
+					Utils.getPingColour(entry.getLatency()));
 
 			setZOffset(getZOffset() - 100);
 		}
 	}
+
+	@Shadow
+	private @Final MinecraftClient client;
 
 }

@@ -1,13 +1,15 @@
 {
   "numeralping.title": "Numeral Ping",
-  "numeralping.option.enabled": "Enabled",
-  "numeralping.option.enabled.desc": "Enable numeral ping in the player list.",
-  "numeralping.option.defaultPingColour": "Ping < 150 Color",
-  "numeralping.option.levelOnePingColour": "Ping < 300 Color",
-  "numeralping.option.levelTwoPingColour": "Ping < 600 Color",
-  "numeralping.option.levelThreePingColour": "Ping < 1000 Color",
-  "numeralping.option.levelFourPingColour": "Ping ≥ 1000 Color",
-  "numeralping.option.levelFivePingColour": "Timed Out Ping Color",
+  "numeralping.option.playerList": "Player List",
+  "numeralping.option.playerList.desc": "Enable numeral ping in the player list.",
+  "numeralping.option.serverList": "Server List",
+  "numeralping.option.serverList.desc": "Enable numeral ping in the server list.",
   "numeralping.option.smallPing": "Small Ping",
-  "numeralping.option.smallPing.desc": "Shrink the ping text using alternative unicode characters."
+  "numeralping.option.smallPing.desc": "Shrink the ping text using alternative unicode characters.",
+  "numeralping.option.defaultPingColour": "Ping < 150",
+  "numeralping.option.levelOnePingColour": "Ping < 300",
+  "numeralping.option.levelTwoPingColour": "Ping < 600",
+  "numeralping.option.levelThreePingColour": "Ping < 1000",
+  "numeralping.option.levelFourPingColour": "Ping ≥ 1000",
+  "numeralping.option.levelFivePingColour": "Timed Out"
 }

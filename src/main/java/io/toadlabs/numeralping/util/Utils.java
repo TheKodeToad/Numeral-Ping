@@ -6,20 +6,13 @@ import io.toadlabs.numeralping.config.NumeralConfig;
 
 public final class Utils {
 
-	public static String unicodeShift(String string, int by) {
-		char[] characters = string.toCharArray();
-
-		for(int i = 0; i < characters.length; i++) {
-			characters[i] += by;
-		}
-
-		return String.valueOf(characters);
-	}
-
-	public static int getPingGrade(int latency) {
+	public static int getPingColour(int latency) {
 		int level;
 
-		if(latency < 0) {
+		if(latency == -2) {
+			level = latency;
+		}
+		else if(latency < 0) {
 			level = 5;
 		}
 		else if(latency < 150) {

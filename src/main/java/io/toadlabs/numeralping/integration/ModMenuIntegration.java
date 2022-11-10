@@ -26,13 +26,33 @@ public final class ModMenuIntegration implements ModMenuApi {
 					.category(ConfigCategory.createBuilder()
 							.name(Text.translatable(ID + ".title"))
 
-							// Enabled
+							// Player List
 							.option(Option.createBuilder(boolean.class)
-									.name(Text.translatable(OPTION + ".enabled"))
-									.tooltip(Text.translatable(OPTION + ".enabled.desc"))
-									.binding(NumeralConfig.DEFAULTS.enabled,
-											() -> config.enabled,
-											(value) -> config.enabled = value)
+									.name(Text.translatable(OPTION + ".playerList"))
+									.tooltip(Text.translatable(OPTION + ".playerList.desc"))
+									.binding(NumeralConfig.DEFAULTS.playerList,
+											() -> config.playerList,
+											(value) -> config.playerList = value)
+									.controller(TickBoxController::new)
+									.build())
+
+							// Server List
+							.option(Option.createBuilder(boolean.class)
+									.name(Text.translatable(OPTION + ".serverList"))
+									.tooltip(Text.translatable(OPTION + ".serverList.desc"))
+									.binding(NumeralConfig.DEFAULTS.serverList,
+											() -> config.serverList,
+											(value) -> config.serverList = value)
+									.controller(TickBoxController::new)
+									.build())
+
+							// Small Ping
+							.option(Option.createBuilder(boolean.class)
+									.name(Text.translatable(OPTION + ".smallPing"))
+									.tooltip(Text.translatable(OPTION + ".smallPing.desc"))
+									.binding(NumeralConfig.DEFAULTS.smallPing,
+											() -> config.smallPing,
+											(value) -> config.smallPing = value)
 									.controller(TickBoxController::new)
 									.build())
 
@@ -88,16 +108,6 @@ public final class ModMenuIntegration implements ModMenuApi {
 											() -> config.levelFivePingColour,
 											(value) -> config.levelFivePingColour = value)
 									.controller(ColorController::new)
-									.build())
-
-							// Small Ping
-							.option(Option.createBuilder(boolean.class)
-									.name(Text.translatable(OPTION + ".smallPing"))
-									.tooltip(Text.translatable(OPTION + ".smallPing.desc"))
-									.binding(NumeralConfig.DEFAULTS.smallPing,
-											() -> config.smallPing,
-											(value) -> config.smallPing = value)
-									.controller(TickBoxController::new)
 									.build())
 
 							.build())
