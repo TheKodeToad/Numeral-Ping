@@ -1,8 +1,8 @@
-package me.mcblueparrot.numeralping.util;
+package io.toadlabs.numeralping.util;
 
 import java.awt.Color;
 
-import me.mcblueparrot.numeralping.config.NumeralConfig;
+import io.toadlabs.numeralping.config.NumeralConfig;
 
 public final class Utils {
 

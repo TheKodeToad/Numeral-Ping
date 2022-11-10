@@ -1,4 +1,4 @@
-package me.mcblueparrot.numeralping.config;
+package io.toadlabs.numeralping.config;
 
 import java.awt.Color;
 import java.lang.reflect.Type;

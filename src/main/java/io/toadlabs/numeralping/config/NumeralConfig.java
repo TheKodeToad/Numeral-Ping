@@ -1,4 +1,4 @@
-package me.mcblueparrot.numeralping.config;
+package io.toadlabs.numeralping.config;
 
 import java.awt.Color;
 import java.io.*;
@@ -6,7 +6,7 @@ import java.nio.charset.StandardCharsets;
 
 import com.google.gson.*;
 
-import me.mcblueparrot.numeralping.NumeralPingMod;
+import io.toadlabs.numeralping.NumeralPingMod;
 
 // boilerplate
 public final class NumeralConfig {

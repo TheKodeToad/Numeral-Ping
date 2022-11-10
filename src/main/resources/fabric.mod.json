@@ -18,10 +18,10 @@
   "environment": "client",
   "entrypoints": {
     "client": [
-      "me.mcblueparrot.numeralping.NumeralPingMod"
+      "io.toadlabs.numeralping.NumeralPingMod"
     ],
     "modmenu": [
-      "me.mcblueparrot.numeralping.integration.ModMenuIntegration"
+      "io.toadlabs.numeralping.integration.ModMenuIntegration"
     ]
   },
   "mixins": [

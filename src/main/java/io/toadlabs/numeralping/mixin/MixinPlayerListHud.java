@@ -1,11 +1,11 @@
-package me.mcblueparrot.numeralping.mixin;
+package io.toadlabs.numeralping.mixin;
 
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import me.mcblueparrot.numeralping.config.NumeralConfig;
-import me.mcblueparrot.numeralping.util.Utils;
+import io.toadlabs.numeralping.config.NumeralConfig;
+import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.hud.PlayerListHud;

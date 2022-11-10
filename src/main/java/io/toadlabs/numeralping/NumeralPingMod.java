@@ -1,10 +1,10 @@
-package me.mcblueparrot.numeralping;
+package io.toadlabs.numeralping;
 
 import java.io.*;
 
 import org.slf4j.*;
 
-import me.mcblueparrot.numeralping.config.NumeralConfig;
+import io.toadlabs.numeralping.config.NumeralConfig;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;

@@ -1,6 +1,6 @@
-package me.mcblueparrot.numeralping.integration;
+package io.toadlabs.numeralping.integration;
 
-import static me.mcblueparrot.numeralping.NumeralPingMod.ID;
+import static io.toadlabs.numeralping.NumeralPingMod.ID;
 
 import java.awt.Color;
 
@@ -8,8 +8,8 @@ import com.terraformersmc.modmenu.api.*;
 
 import dev.isxander.yacl.api.*;
 import dev.isxander.yacl.gui.controllers.*;
-import me.mcblueparrot.numeralping.NumeralPingMod;
-import me.mcblueparrot.numeralping.config.NumeralConfig;
+import io.toadlabs.numeralping.NumeralPingMod;
+import io.toadlabs.numeralping.config.NumeralConfig;
 import net.minecraft.text.Text;
 
 public final class ModMenuIntegration implements ModMenuApi {
