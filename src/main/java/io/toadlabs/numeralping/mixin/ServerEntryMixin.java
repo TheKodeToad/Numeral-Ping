@@ -1,5 +1,7 @@
 package io.toadlabs.numeralping.mixin;
 
+import java.util.List;
+
 import org.spongepowered.asm.mixin.*;
 import org.spongepowered.asm.mixin.injection.*;
 
@@ -8,9 +10,10 @@ import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.text.Text;
+import net.minecraft.text.*;
 
 @Mixin(targets = "net/minecraft/client/gui/screen/multiplayer/MultiplayerServerListWidget$ServerEntry")
 public class ServerEntryMixin {
@@ -25,6 +28,19 @@ public class ServerEntryMixin {
 
 		return instance.draw(matrices, text, x, y, color);
 	}
+
+	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setTooltip(Ljava/util/List;)V"))
+	public void setTooltip(MultiplayerScreen screen, List<Text> tooltip) {
+		if(tooltip != null && tooltip.size() == 1
+				&& NumeralConfig.instance().serverList
+				&& tooltip.get(0).getContent() instanceof TranslatableTextContent translatable
+				&& translatable.getKey().equals("multiplayer.status.ping")) {
+			tooltip = null;
+		}
+
+		screen.setTooltip(tooltip);
+	}
+
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawableHelper;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIFFIIII)V", ordinal = 0))
 	public void renderDetailedLatency(MatrixStack matrices, int x, int y, float u, float v, int width, int height,
