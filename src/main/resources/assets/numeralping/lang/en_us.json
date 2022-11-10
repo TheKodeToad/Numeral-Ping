@@ -1,11 +1,13 @@
 {
-  "text.autoconfig.numeralping.title": "Numeral Ping",
-  "text.autoconfig.numeralping.option.enabled": "Enabled",
-  "text.autoconfig.numeralping.option.defaultPingColour": "Ping < 150 Color",
-  "text.autoconfig.numeralping.option.levelOnePingColour": "Ping < 300 Color",
-  "text.autoconfig.numeralping.option.levelTwoPingColour": "Ping < 600 Color",
-  "text.autoconfig.numeralping.option.levelThreePingColour": "Ping < 1000 Color",
-  "text.autoconfig.numeralping.option.levelFourPingColour": "Ping ≥ 1000 Color",
-  "text.autoconfig.numeralping.option.levelFivePingColour": "Timed Out Ping Color",
-  "text.autoconfig.numeralping.option.smallPing": "Small Ping"
+  "numeralping.title": "Numeral Ping",
+  "numeralping.option.enabled": "Enabled",
+  "numeralping.option.enabled.desc": "Enable numeral ping in the player list.",
+  "numeralping.option.defaultPingColour": "Ping < 150 Color",
+  "numeralping.option.levelOnePingColour": "Ping < 300 Color",
+  "numeralping.option.levelTwoPingColour": "Ping < 600 Color",
+  "numeralping.option.levelThreePingColour": "Ping < 1000 Color",
+  "numeralping.option.levelFourPingColour": "Ping ≥ 1000 Color",
+  "numeralping.option.levelFivePingColour": "Timed Out Ping Color",
+  "numeralping.option.smallPing": "Small Ping",
+  "numeralping.option.smallPing.desc": "Shrink the ping text using alternative unicode characters."
 }

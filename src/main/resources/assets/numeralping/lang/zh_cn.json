@@ -1,11 +1,11 @@
 {
-  "text.autoconfig.numeralping.title": "Numeral Ping",
-  "text.autoconfig.numeralping.option.enabled": "启用",
-  "text.autoconfig.numeralping.option.defaultPingColour": "Ping < 150 颜色",
-  "text.autoconfig.numeralping.option.levelOnePingColour": "Ping < 300 颜色",
-  "text.autoconfig.numeralping.option.levelTwoPingColour": "Ping < 600 颜色",
-  "text.autoconfig.numeralping.option.levelThreePingColour": "Ping < 1000 颜色",
-  "text.autoconfig.numeralping.option.levelFourPingColour": "Ping ≥ 1000 颜色",
-  "text.autoconfig.numeralping.option.levelFivePingColour": "Ping 超时 颜色",
-  "text.autoconfig.numeralping.option.smallPing": "小型 Ping 数字"
+  "numeralping.title": "Numeral Ping",
+  "numeralping.option.enabled": "启用",
+  "numeralping.option.defaultPingColour": "Ping < 150 颜色",
+  "numeralping.option.levelOnePingColour": "Ping < 300 颜色",
+  "numeralping.option.levelTwoPingColour": "Ping < 600 颜色",
+  "numeralping.option.levelThreePingColour": "Ping < 1000 颜色",
+  "numeralping.option.levelFourPingColour": "Ping ≥ 1000 颜色",
+  "numeralping.option.levelFivePingColour": "Ping 超时 颜色",
+  "numeralping.option.smallPing": "小型 Ping 数字"
 }

@@ -1,9 +1,10 @@
 package me.mcblueparrot.numeralping.util;
 
-import me.mcblueparrot.numeralping.NumeralPingMod;
+import java.awt.Color;
+
 import me.mcblueparrot.numeralping.config.NumeralConfig;
 
-public class Utils {
+public final class Utils {
 
 	public static String unicodeShift(String string, int by) {
 		char[] characters = string.toCharArray();
@@ -37,11 +38,11 @@ public class Utils {
 			level = 4;
 		}
 
-		NumeralConfig config = NumeralPingMod.INSTANCE.getConfig();
+		NumeralConfig config = NumeralConfig.instance();
 
 		// What is this crazy syntax?
 		// Thanks IntelliJ
-		return switch (level) {
+		Color colour = switch(level) {
 			case 1 -> config.levelOnePingColour;
 			case 2 -> config.levelTwoPingColour;
 			case 3 -> config.levelThreePingColour;
@@ -50,5 +51,6 @@ public class Utils {
 			default -> config.defaultPingColour;
 		};
 
+		return colour.getRGB();
 	}
 }

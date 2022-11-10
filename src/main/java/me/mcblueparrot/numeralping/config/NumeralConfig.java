@@ -1,30 +1,43 @@
 package me.mcblueparrot.numeralping.config;
 
-import me.shedaniel.autoconfig.ConfigData;
-import me.shedaniel.autoconfig.annotation.Config;
-import me.shedaniel.autoconfig.annotation.ConfigEntry;
-import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
+import java.awt.Color;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
-@Config(name = "numeralping")
-public class NumeralConfig implements ConfigData {
+import com.google.gson.*;
 
-	@Comment("Enable numeral ping in tab")
+import me.mcblueparrot.numeralping.NumeralPingMod;
+
+// boilerplate
+public final class NumeralConfig {
+
+	// dirty tricks
+	public static final NumeralConfig DEFAULTS = new NumeralConfig();
+	private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Color.class, ColorAdapter.INSTANCE).create();
+
 	public boolean enabled = true;
-
-	@ConfigEntry.ColorPicker
-	public int defaultPingColour = 0x00FF00;
-	@ConfigEntry.ColorPicker
-	public int levelOnePingColour = 0xFFFF00;
-	@ConfigEntry.ColorPicker
-	public int levelTwoPingColour = 0xFF9600;
-	@ConfigEntry.ColorPicker
-	public int levelThreePingColour = 0xFF6400;
-	@ConfigEntry.ColorPicker
-	public int levelFourPingColour = 0xFF0000;
-	@ConfigEntry.ColorPicker
-	public int levelFivePingColour = levelFourPingColour;
-
-	@Comment("Shrink ping text")
+	public Color defaultPingColour = new Color(0x00FF00);
+	public Color levelOnePingColour = new Color(0xFFFF00);
+	public Color levelTwoPingColour = new Color(0xFF9600);
+	public Color levelThreePingColour = new Color(0xFF6400);
+	public Color levelFourPingColour = new Color(0xFF0000);
+	public Color levelFivePingColour = levelFourPingColour;
 	public boolean smallPing = true;
+
+	public static NumeralConfig instance() {
+		return NumeralPingMod.instance().getConfig();
+	}
+
+	public static NumeralConfig read(File file) throws IOException {
+		try(Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
+			return GSON.fromJson(reader, NumeralConfig.class);
+		}
+	}
+
+	public void save(File file) throws IOException {
+		try(Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+			GSON.toJson(this, writer);
+		}
+	}
 
 }
