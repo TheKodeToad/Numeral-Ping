@@ -5,7 +5,7 @@
   "numeralping.option.serverList": "Server List",
   "numeralping.option.serverList.desc": "Enable numeral ping in the server list.",
   "numeralping.option.smallPing": "Small Ping",
-  "numeralping.option.smallPing.desc": "Shrink the ping text using alternative unicode characters.",
+  "numeralping.option.smallPing.desc": "Shrink the ping text using alternative Unicode characters.",
   "numeralping.option.defaultPingColour": "Ping < 150",
   "numeralping.option.levelOnePingColour": "Ping < 300",
   "numeralping.option.levelTwoPingColour": "Ping < 600",
