@@ -1,0 +1,15 @@
+{
+    "numeralping.title": "Numeral Ping",
+    "numeralping.option.playerList": "Lista de Jogadores",
+    "numeralping.option.playerList.desc": "Ativar ping numérico na lista de jogadores.",
+    "numeralping.option.serverList": "Lista de Servidores",
+    "numeralping.option.serverList.desc": "Habilitar Ping Numeral na Lista de Servidores.",
+    "numeralping.option.smallPing": "Ping pequeno",
+    "numeralping.option.smallPing.desc": "Reduza o texto do ping usando caracteres unicode alternativos.",
+    "numeralping.option.defaultPingColour": "Ping < 150",
+    "numeralping.option.levelOnePingColour": "Ping < 300",
+    "numeralping.option.levelTwoPingColour": "Ping < 600",
+    "numeralping.option.levelThreePingColour": "Ping < 1000",
+    "numeralping.option.levelFourPingColour": "Ping ≥ 1000",
+    "numeralping.option.levelFivePingColour": "Tempo esgotado"
+  }
