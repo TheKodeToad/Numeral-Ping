@@ -6,7 +6,8 @@
   "description": "Display the ping of each player in the tab list.",
   "authors": [
     "TheKodeToad",
-    "thaumiel9"
+    "thaumiel9 (Simplified Chinese)",
+    "FITFC (Brazilian Portuguese)"
   ],
   "icon": "assets/numeralping/icon.png",
   "contact": {
