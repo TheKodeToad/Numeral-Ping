@@ -5,10 +5,12 @@
   "name": "Numeral Ping",
   "description": "Display the ping of each player in the tab list.",
   "authors": [
-    "TheKodeToad",
-    "thaumiel9 (Simplified Chinese)",
-    "FITFC (Brazilian Portuguese)"
+    "TheKodeToad"
   ],
+  "contributors": [
+    "thaumiel9",
+    "FITFC"
+  ]
   "icon": "assets/numeralping/icon.png",
   "contact": {
     "homepage": "https://www.curseforge.com/minecraft/mc-mods/numeral-ping",
