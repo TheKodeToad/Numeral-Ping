@@ -20,7 +20,7 @@ public class PlayerListHudMixin extends DrawableHelper {
 			CallbackInfo callback) {
 		NumeralConfig config = NumeralConfig.instance();
 
-		if(config.playerList) {
+		if (config.playerList) {
 			callback.cancel();
 
 			String pingString = Integer.toString(entry.getLatency());

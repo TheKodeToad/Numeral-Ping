@@ -29,6 +29,8 @@ dependencies {
 	// You may need to force-disable transitiveness on them.
 	modImplementation "dev.isxander:yet-another-config-lib:${project.yacl_version}"
 	include "dev.isxander:yet-another-config-lib:${project.yacl_version}"
+	
+	modImplementation "com.terraformersmc:modmenu:${project.mod_menu_version}"
 }
 
 processResources {
