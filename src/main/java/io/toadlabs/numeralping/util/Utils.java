@@ -9,29 +9,29 @@ public final class Utils {
 	public static int getPingColour(int latency) {
 		int level;
 
+		NumeralConfig config = NumeralConfig.instance();
+
 		if(latency == -2) {
 			level = latency;
 		}
 		else if(latency < 0) {
 			level = 5;
 		}
-		else if(latency < 150) {
+		else if(latency < config.defaultPingBorder) {
 			level = 0;
 		}
-		else if(latency < 300) {
+		else if(latency < config.levelOnePingBorder) {
 			level = 1;
 		}
-		else if(latency < 600) {
+		else if(latency < config.levelTwoPingBorder) {
 			level = 2;
 		}
-		else if(latency < 1000) {
+		else if(latency < config.levelThreePingBorder) {
 			level = 3;
 		}
 		else {
 			level = 4;
 		}
-
-		NumeralConfig config = NumeralConfig.instance();
 
 		// What is this crazy syntax?
 		// Thanks IntelliJ
