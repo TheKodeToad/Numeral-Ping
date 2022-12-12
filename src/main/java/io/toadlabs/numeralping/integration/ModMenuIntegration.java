@@ -8,6 +8,7 @@ import com.terraformersmc.modmenu.api.*;
 
 import dev.isxander.yacl.api.*;
 import dev.isxander.yacl.gui.controllers.*;
+import dev.isxander.yacl.gui.controllers.string.number.IntegerFieldController;
 import io.toadlabs.numeralping.NumeralPingMod;
 import io.toadlabs.numeralping.config.NumeralConfig;
 import net.minecraft.text.Text;
@@ -56,45 +57,87 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.controller(TickBoxController::new)
 									.build())
 
-							// Ping < 150 Colour
+							// Ping borders
+
+							// Default
+							.option(Option.createBuilder(int.class)
+									.name(Text.translatable(OPTION + ".defaultPingBorder"))
+									.tooltip(Text.translatable(OPTION + ".defaultPingBorder.desc"))
+									.binding(NumeralConfig.DEFAULTS.defaultPingBorder,
+											() -> config.defaultPingBorder,
+											(value) -> config.defaultPingBorder = value)
+									.controller(IntegerFieldController::new)
+									.build())
+
+							// levelOnePingBorder
+							.option(Option.createBuilder(int.class)
+									.name(Text.translatable(OPTION + ".levelOnePingBorder"))
+									.tooltip(Text.translatable(OPTION + ".levelOnePingBorder.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelOnePingBorder,
+											() -> config.levelOnePingBorder,
+											(value) -> config.levelOnePingBorder = value)
+									.controller(IntegerFieldController::new)
+									.build())
+
+							// levelTwoPingBorder
+							.option(Option.createBuilder(int.class)
+									.name(Text.translatable(OPTION + ".levelTwoPingBorder"))
+									.tooltip(Text.translatable(OPTION + ".levelTwoPingBorder.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelTwoPingBorder,
+											() -> config.levelTwoPingBorder,
+											(value) -> config.levelTwoPingBorder = value)
+									.controller(IntegerFieldController::new)
+									.build())
+
+							// levelThreePingBorder
+							.option(Option.createBuilder(int.class)
+									.name(Text.translatable(OPTION + ".levelThreePingBorder"))
+									.tooltip(Text.translatable(OPTION + ".levelThreePingBorder.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelThreePingBorder,
+											() -> config.levelThreePingBorder,
+											(value) -> config.levelThreePingBorder = value)
+									.controller(IntegerFieldController::new)
+									.build())
+
+							// Ping < defaultPingBorder Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".defaultPingColour"))
+									.name(Text.translatable(OPTION + ".defaultPingColour").append(Text.of(String.valueOf(config.defaultPingBorder))))
 									.binding(NumeralConfig.DEFAULTS.defaultPingColour,
 											() -> config.defaultPingColour,
 											(value) -> config.defaultPingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < 300 Colour
+							// Ping < levelOnePingBorder Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelOnePingColour"))
+									.name(Text.translatable(OPTION + ".levelOnePingColour").append(Text.of(String.valueOf(config.levelOnePingBorder))))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingColour,
 											() -> config.levelOnePingColour,
 											(value) -> config.levelOnePingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < 600 Colour
+							// Ping < levelTwoPingBorder Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelTwoPingColour"))
+									.name(Text.translatable(OPTION + ".levelTwoPingColour").append(Text.of(String.valueOf(config.levelTwoPingBorder))))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingColour,
 											() -> config.levelTwoPingColour,
 											(value) -> config.levelTwoPingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < 1000 Colour
+							// Ping < levelThreePingBorder Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelThreePingColour"))
+									.name(Text.translatable(OPTION + ".levelThreePingColour").append(Text.of(String.valueOf(config.levelThreePingBorder))))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingColour,
 											() -> config.levelThreePingColour,
 											(value) -> config.levelThreePingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping ≥ 1000 Colour
+							// Ping ≥ levelThreePingBorder Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelFourPingColour"))
+									.name(Text.translatable(OPTION + ".levelFourPingColour").append(Text.of(String.valueOf(config.levelThreePingBorder))))
 									.binding(NumeralConfig.DEFAULTS.levelFourPingColour,
 											() -> config.levelFourPingColour,
 											(value) -> config.levelFourPingColour = value)
