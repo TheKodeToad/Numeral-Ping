@@ -57,87 +57,87 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.controller(TickBoxController::new)
 									.build())
 
-							// Ping borders
+							// Ping Thresholds
 
 							// Default
 							.option(Option.createBuilder(int.class)
-									.name(Text.translatable(OPTION + ".defaultPingBorder"))
-									.tooltip(Text.translatable(OPTION + ".defaultPingBorder.desc"))
-									.binding(NumeralConfig.DEFAULTS.defaultPingBorder,
-											() -> config.defaultPingBorder,
-											(value) -> config.defaultPingBorder = value)
+									.name(Text.translatable(OPTION + ".defaultPingThreshold"))
+									.tooltip(Text.translatable(OPTION + ".defaultPingThreshold.desc"))
+									.binding(NumeralConfig.DEFAULTS.defaultPingThreshold,
+											() -> config.defaultPingThreshold,
+											(value) -> config.defaultPingThreshold = value)
 									.controller(IntegerFieldController::new)
 									.build())
 
-							// levelOnePingBorder
+							// levelOnePingThreshold
 							.option(Option.createBuilder(int.class)
-									.name(Text.translatable(OPTION + ".levelOnePingBorder"))
-									.tooltip(Text.translatable(OPTION + ".levelOnePingBorder.desc"))
-									.binding(NumeralConfig.DEFAULTS.levelOnePingBorder,
-											() -> config.levelOnePingBorder,
-											(value) -> config.levelOnePingBorder = value)
+									.name(Text.translatable(OPTION + ".levelOnePingThreshold"))
+									.tooltip(Text.translatable(OPTION + ".levelOnePingThreshold.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelOnePingThreshold,
+											() -> config.levelOnePingThreshold,
+											(value) -> config.levelOnePingThreshold = value)
 									.controller(IntegerFieldController::new)
 									.build())
 
-							// levelTwoPingBorder
+							// levelTwoPingThreshold
 							.option(Option.createBuilder(int.class)
-									.name(Text.translatable(OPTION + ".levelTwoPingBorder"))
-									.tooltip(Text.translatable(OPTION + ".levelTwoPingBorder.desc"))
-									.binding(NumeralConfig.DEFAULTS.levelTwoPingBorder,
-											() -> config.levelTwoPingBorder,
-											(value) -> config.levelTwoPingBorder = value)
+									.name(Text.translatable(OPTION + ".levelTwoPingThreshold"))
+									.tooltip(Text.translatable(OPTION + ".levelTwoPingThreshold.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelTwoPingThreshold,
+											() -> config.levelTwoPingThreshold,
+											(value) -> config.levelTwoPingThreshold = value)
 									.controller(IntegerFieldController::new)
 									.build())
 
-							// levelThreePingBorder
+							// levelThreePingThreshold
 							.option(Option.createBuilder(int.class)
-									.name(Text.translatable(OPTION + ".levelThreePingBorder"))
-									.tooltip(Text.translatable(OPTION + ".levelThreePingBorder.desc"))
-									.binding(NumeralConfig.DEFAULTS.levelThreePingBorder,
-											() -> config.levelThreePingBorder,
-											(value) -> config.levelThreePingBorder = value)
+									.name(Text.translatable(OPTION + ".levelThreePingThreshold"))
+									.tooltip(Text.translatable(OPTION + ".levelThreePingThreshold.desc"))
+									.binding(NumeralConfig.DEFAULTS.levelThreePingThreshold,
+											() -> config.levelThreePingThreshold,
+											(value) -> config.levelThreePingThreshold = value)
 									.controller(IntegerFieldController::new)
 									.build())
 
-							// Ping < defaultPingBorder Colour
+							// Ping < defaultPingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".defaultPingColour").append(Text.of(String.valueOf(config.defaultPingBorder))))
+									.name(Text.translatable(OPTION + ".defaultPingColour").append(Text.of(String.valueOf(config.defaultPingThreshold))))
 									.binding(NumeralConfig.DEFAULTS.defaultPingColour,
 											() -> config.defaultPingColour,
 											(value) -> config.defaultPingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < levelOnePingBorder Colour
+							// Ping < levelOnePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelOnePingColour").append(Text.of(String.valueOf(config.levelOnePingBorder))))
+									.name(Text.translatable(OPTION + ".levelOnePingColour").append(Text.of(String.valueOf(config.levelOnePingThreshold))))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingColour,
 											() -> config.levelOnePingColour,
 											(value) -> config.levelOnePingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < levelTwoPingBorder Colour
+							// Ping < levelTwoPingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelTwoPingColour").append(Text.of(String.valueOf(config.levelTwoPingBorder))))
+									.name(Text.translatable(OPTION + ".levelTwoPingColour").append(Text.of(String.valueOf(config.levelTwoPingThreshold))))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingColour,
 											() -> config.levelTwoPingColour,
 											(value) -> config.levelTwoPingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping < levelThreePingBorder Colour
+							// Ping < levelThreePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelThreePingColour").append(Text.of(String.valueOf(config.levelThreePingBorder))))
+									.name(Text.translatable(OPTION + ".levelThreePingColour").append(Text.of(String.valueOf(config.levelThreePingThreshold))))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingColour,
 											() -> config.levelThreePingColour,
 											(value) -> config.levelThreePingColour = value)
 									.controller(ColorController::new)
 									.build())
 
-							// Ping ≥ levelThreePingBorder Colour
+							// Ping ≥ levelThreePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelFourPingColour").append(Text.of(String.valueOf(config.levelThreePingBorder))))
+									.name(Text.translatable(OPTION + ".levelFourPingColour").append(Text.of(String.valueOf(config.levelThreePingThreshold))))
 									.binding(NumeralConfig.DEFAULTS.levelFourPingColour,
 											() -> config.levelFourPingColour,
 											(value) -> config.levelFourPingColour = value)
