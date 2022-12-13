@@ -28,10 +28,10 @@ public final class NumeralConfig {
 			levelFivePingColour = levelFourPingColour;
 
 	public int
-			defaultPingBorder = 150,
-			levelOnePingBorder = 300,
-			levelTwoPingBorder = 600,
-			levelThreePingBorder = 1000;
+			defaultPingThreshold = 150,
+			levelOnePingThreshold = 300,
+			levelTwoPingThreshold = 600,
+			levelThreePingThreshold = 1000;
 
 	public static NumeralConfig instance() {
 		return NumeralPingMod.instance().getConfig();

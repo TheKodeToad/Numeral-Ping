@@ -17,16 +17,16 @@ public final class Utils {
 		else if(latency < 0) {
 			level = 5;
 		}
-		else if(latency < config.defaultPingBorder) {
+		else if(latency < config.defaultPingThreshold) {
 			level = 0;
 		}
-		else if(latency < config.levelOnePingBorder) {
+		else if(latency < config.levelOnePingThreshold) {
 			level = 1;
 		}
-		else if(latency < config.levelTwoPingBorder) {
+		else if(latency < config.levelTwoPingThreshold) {
 			level = 2;
 		}
-		else if(latency < config.levelThreePingBorder) {
+		else if(latency < config.levelThreePingThreshold) {
 			level = 3;
 		}
 		else {
