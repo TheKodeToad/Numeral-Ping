@@ -14,10 +14,11 @@
   "numeralping.option.levelTwoPingThreshold.desc": "Highest ping value for the level two colour.",
   "numeralping.option.levelThreePingThreshold": "Level Three Threshold",
   "numeralping.option.levelThreePingThreshold.desc": "Highest ping value for the level three colour.",
-  "numeralping.option.defaultPingColour": "Ping < ",
-  "numeralping.option.levelOnePingColour": "Ping < ",
-  "numeralping.option.levelTwoPingColour": "Ping < ",
-  "numeralping.option.levelThreePingColour": "Ping < ",
-  "numeralping.option.levelFourPingColour": "Ping ≥ ",
+  "numeralping.option.defaultPingColour": "Default Ping Colour",
+  "numeralping.option.levelOnePingColour": "Level One Ping Colour",
+  "numeralping.option.levelTwoPingColour": "Level Two Ping Colour",
+  "numeralping.option.levelThreePingColour": "Level Three Ping Colour",
+  "numeralping.option.levelFourPingColour": "Level Four Ping Colour",
+  "numeralping.option.levelFourPingColour.desc": "Anything higher than level three.",
   "numeralping.option.levelFivePingColour": "Timed Out"
 }

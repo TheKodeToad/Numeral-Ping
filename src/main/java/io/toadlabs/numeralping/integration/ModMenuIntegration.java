@@ -101,7 +101,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < defaultPingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".defaultPingColour").append(Text.of(String.valueOf(config.defaultPingThreshold))))
+									.name(Text.translatable(OPTION + ".defaultPingColour"))
 									.binding(NumeralConfig.DEFAULTS.defaultPingColour,
 											() -> config.defaultPingColour,
 											(value) -> config.defaultPingColour = value)
@@ -110,7 +110,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelOnePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelOnePingColour").append(Text.of(String.valueOf(config.levelOnePingThreshold))))
+									.name(Text.translatable(OPTION + ".levelOnePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingColour,
 											() -> config.levelOnePingColour,
 											(value) -> config.levelOnePingColour = value)
@@ -119,7 +119,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelTwoPingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelTwoPingColour").append(Text.of(String.valueOf(config.levelTwoPingThreshold))))
+									.name(Text.translatable(OPTION + ".levelTwoPingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingColour,
 											() -> config.levelTwoPingColour,
 											(value) -> config.levelTwoPingColour = value)
@@ -128,7 +128,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelThreePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelThreePingColour").append(Text.of(String.valueOf(config.levelThreePingThreshold))))
+									.name(Text.translatable(OPTION + ".levelThreePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingColour,
 											() -> config.levelThreePingColour,
 											(value) -> config.levelThreePingColour = value)
@@ -137,7 +137,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping ≥ levelThreePingThreshold Colour
 							.option(Option.createBuilder(Color.class)
-									.name(Text.translatable(OPTION + ".levelFourPingColour").append(Text.of(String.valueOf(config.levelThreePingThreshold))))
+									.name(Text.translatable(OPTION + ".levelFourPingColour"))
+									.tooltip(Text.translatable(OPTION + ".levelFourPingColour.desc"))
 									.binding(NumeralConfig.DEFAULTS.levelFourPingColour,
 											() -> config.levelFourPingColour,
 											(value) -> config.levelFourPingColour = value)
