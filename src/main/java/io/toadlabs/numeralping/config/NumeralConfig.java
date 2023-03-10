@@ -3,6 +3,8 @@ package io.toadlabs.numeralping.config;
 import java.awt.Color;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import com.google.gson.*;
 
@@ -14,18 +16,11 @@ public final class NumeralConfig {
 	public static final NumeralConfig DEFAULTS = new NumeralConfig();
 	private static final Gson GSON = new GsonBuilder().registerTypeAdapter(Color.class, ColorAdapter.INSTANCE).create();
 
-	public boolean
-			playerList = true,
-			serverList = false,
-			smallPing = true;
+	public boolean playerList = true, serverList = false, smallPing = true;
 
-	public Color
-			defaultPingColour = new Color(0x00FF00),
-			levelOnePingColour = new Color(0xFFFF00),
-			levelTwoPingColour = new Color(0xFF9600),
-			levelThreePingColour = new Color(0xFF6400),
-			levelFourPingColour = new Color(0xFF0000),
-			levelFivePingColour = levelFourPingColour;
+	public Color defaultPingColour = new Color(0x00FF00), levelOnePingColour = new Color(0xFFFF00),
+			levelTwoPingColour = new Color(0xFF9600), levelThreePingColour = new Color(0xFF6400),
+			levelFourPingColour = new Color(0xFF0000), levelFivePingColour = levelFourPingColour;
 
 	public int
 			defaultPingThreshold = 150,
@@ -38,27 +33,27 @@ public final class NumeralConfig {
 	}
 
 	// boilerplate
-	public static NumeralConfig read(File file) throws IOException {
-		try(Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
+	public static NumeralConfig read(Path file) throws IOException {
+		try (Reader reader = new InputStreamReader(Files.newInputStream(file), StandardCharsets.UTF_8)) {
 			return GSON.fromJson(reader, NumeralConfig.class);
 		}
 	}
 
-	public void save(File file) throws IOException {
-		try(Writer writer = new OutputStreamWriter(new FileOutputStream(file), StandardCharsets.UTF_8)) {
+	public void save(Path file) throws IOException {
+		try (Writer writer = new OutputStreamWriter(Files.newOutputStream(file), StandardCharsets.UTF_8)) {
 			GSON.toJson(this, writer);
 		}
 	}
 
 	public String shiftPing(String string) {
-		if(smallPing) {
+		if (smallPing) {
 			// based on numeric ping
 			char[] characters = new char[string.length()];
 
-			for(int index = 0; index < string.length(); index++) {
+			for (int index = 0; index < string.length(); index++) {
 				characters[index] = string.charAt(index);
 
-				if(Character.isDigit(characters[index])) {
+				if (Character.isDigit(characters[index])) {
 					characters[index] += 8272;
 				}
 			}

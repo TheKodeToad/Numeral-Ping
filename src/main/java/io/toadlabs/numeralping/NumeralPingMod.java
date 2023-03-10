@@ -1,8 +1,11 @@
 package io.toadlabs.numeralping;
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.slf4j.*;
+import org.spongepowered.asm.mixin.FabricUtil;
 
 import io.toadlabs.numeralping.config.NumeralConfig;
 import net.fabricmc.api.*;
@@ -20,27 +23,24 @@ public final class NumeralPingMod implements ClientModInitializer {
 	private static NumeralPingMod instance;
 
 	private NumeralConfig config;
-	private File configFile;
+	private Path configFile;
 
 	@Override
-	@SuppressWarnings("resource")
 	public void onInitializeClient() {
 		instance = this;
 
-		configFile = new File(MinecraftClient.getInstance().runDirectory, "config/numeralping.json");
+		configFile = FabricLoader.getInstance().getGameDir().resolve("config/numeralping.json");
 
-		if(configFile.exists()) {
+		if (Files.exists(configFile)) {
 			try {
 				config = NumeralConfig.read(configFile);
-			}
-			catch(IOException error) {
+			} catch (IOException error) {
 				LOGGER.error("Failed to read config", error);
 			}
 		}
 
-		if(config == null) {
+		if (config == null)
 			config = new NumeralConfig();
-		}
 
 		saveConfig();
 
@@ -54,8 +54,7 @@ public final class NumeralPingMod implements ClientModInitializer {
 	public void saveConfig() {
 		try {
 			config.save(configFile);
-		}
-		catch(IOException error) {
+		} catch (IOException error) {
 			LOGGER.error("Failed to read config", error);
 		}
 	}
