@@ -26,13 +26,14 @@ public class PlayerListHudMixin extends DrawableHelper {
 			String pingString = Integer.toString(entry.getLatency());
 			pingString = config.shiftPing(pingString);
 
-			setZOffset(getZOffset() + 100);
+			matrices.push();
+			matrices.translate(0, 0, 100);
 
-			drawStringWithShadow(matrices, client.textRenderer, pingString,
+			drawTextWithShadow(matrices, client.textRenderer, pingString,
 					x + width - client.textRenderer.getWidth(pingString) - 1, y - (config.smallPing ? 2 : 0),
 					Utils.getPingColour(entry.getLatency()));
 
-			setZOffset(getZOffset() - 100);
+			matrices.pop();
 		}
 	}
 
