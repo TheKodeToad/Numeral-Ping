@@ -1,17 +1,14 @@
 package io.toadlabs.numeralping;
 
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.IOException;
+import java.nio.file.*;
 
 import org.slf4j.*;
-import org.spongepowered.asm.mixin.FabricUtil;
 
 import io.toadlabs.numeralping.config.NumeralConfig;
 import net.fabricmc.api.*;
 import net.fabricmc.fabric.api.resource.*;
 import net.fabricmc.loader.api.*;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.util.Identifier;
 
 @Environment(EnvType.CLIENT)

@@ -9,24 +9,24 @@ import io.toadlabs.numeralping.config.NumeralConfig;
 import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.DrawableHelper;
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.multiplayer.*;
 import net.minecraft.client.network.ServerInfo;
-import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.text.*;
+import net.minecraft.util.Identifier;
 
 @Mixin(MultiplayerServerListWidget.ServerEntry.class)
 public class ServerEntryMixin {
 
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/font/TextRenderer;draw(Lnet/minecraft/client/util/math/MatrixStack;Lnet/minecraft/text/Text;FFI)I", ordinal = 0))
-	public int shiftText(TextRenderer instance, MatrixStack matrices, Text text, float x, float y, int color) {
+	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
+	public int shiftText(DrawContext instance, TextRenderer renderer, Text text, int x, int y, int color, boolean shadow) {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (config.serverList) {
-			x += 10 - instance.getWidth(getPingText(config, server.ping));
+			x += 10 - renderer.getWidth(getPingText(config, server.ping));
 		}
 
-		return instance.draw(matrices, text, x, y, color);
+		return instance.drawText(renderer, text, x, y, color, false);
 	}
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"))
@@ -40,9 +40,9 @@ public class ServerEntryMixin {
 		screen.setMultiplayerScreenTooltip(tooltip);
 	}
 
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawableHelper;drawTexture(Lnet/minecraft/client/util/math/MatrixStack;IIFFIIII)V", ordinal = 0))
-	public void renderDetailedLatency(MatrixStack matrices, int x, int y, float u, float v, int width, int height,
-			int textureWidth, int textureHeight) {
+	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTexture(Lnet/minecraft/util/Identifier;IIFFIIII)V", ordinal = 0))
+	public void renderDetailedLatency(DrawContext instance, Identifier id, int x, int y, float u, float v, int width,
+			int height, int textureWidth, int textureHeight) {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (server.ping >= 0 && config.serverList) {
@@ -54,12 +54,12 @@ public class ServerEntryMixin {
 				y++;
 			}
 
-			client.textRenderer.draw(matrices, text, x + 11 - client.textRenderer.getWidth(text), y,
-					Utils.getPingColour((int) server.ping));
+			instance.drawText(client.textRenderer, text, x + 11 - client.textRenderer.getWidth(text), y,
+					Utils.getPingColour((int) server.ping), false);
 			return;
 		}
 
-		DrawableHelper.drawTexture(matrices, x, y, u, v, width, height, textureWidth, textureHeight);
+		instance.drawTexture(id, x, y, u, v, width, height, textureWidth, textureHeight);
 	}
 
 	private String getPingText(NumeralConfig config, long ping) {
