@@ -17,7 +17,7 @@ import net.minecraft.util.Identifier;
 
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
-@Mixin(value = MultiplayerServerListWidget.ServerEntry.class, priority = 2000)
+@Mixin(value = MultiplayerServerListWidget.ServerEntry.class, priority = 0)
 public class ServerEntryMixin {
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
