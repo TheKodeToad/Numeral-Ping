@@ -15,7 +15,9 @@ import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.*;
 import net.minecraft.util.Identifier;
 
-@Mixin(MultiplayerServerListWidget.ServerEntry.class)
+// a priority of 2000 means it will apply later
+// this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
+@Mixin(value = MultiplayerServerListWidget.ServerEntry.class, priority = 2000)
 public class ServerEntryMixin {
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
@@ -29,7 +31,8 @@ public class ServerEntryMixin {
 		return instance.drawText(renderer, text, x, y, color, false);
 	}
 
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"))
+	// hide the tooltip if it's redundant
+	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"), require = 0)
 	public void setTooltip(MultiplayerScreen screen, List<Text> tooltip) {
 		if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList
 				&& tooltip.get(0).getContent() instanceof TranslatableTextContent translatable
