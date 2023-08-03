@@ -1,20 +1,26 @@
 package io.toadlabs.numeralping;
 
-import java.io.IOException;
-import java.nio.file.*;
-
-import org.slf4j.*;
-
 import io.toadlabs.numeralping.config.NumeralConfig;
-import net.fabricmc.api.*;
-import net.fabricmc.fabric.api.resource.*;
-import net.fabricmc.loader.api.*;
+import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.api.EnvType;
+import net.fabricmc.api.Environment;
+import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
+import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 @Environment(EnvType.CLIENT)
 public final class NumeralPingMod implements ClientModInitializer {
 
 	public static final String ID = "numeralping";
+	public static String NAME;
 	public static final Logger LOGGER = LoggerFactory.getLogger(NumeralPingMod.class);
 
 	private static NumeralPingMod instance;
@@ -24,6 +30,7 @@ public final class NumeralPingMod implements ClientModInitializer {
 
 	@Override
 	public void onInitializeClient() {
+		NAME = FabricLoader.getInstance().getModContainer(ID).get().getMetadata().getName();
 		instance = this;
 
 		configFile = FabricLoader.getInstance().getGameDir().resolve("config/numeralping.json");

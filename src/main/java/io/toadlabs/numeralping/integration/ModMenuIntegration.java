@@ -20,17 +20,16 @@ import static io.toadlabs.numeralping.NumeralPingMod.ID;
 public final class ModMenuIntegration implements ModMenuApi {
 
 	public static final String OPTION = ID + ".option";
-	private static final Text TITLE = Text.of("Numeral Ping");
 
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
 		return (parent) -> {
 			NumeralConfig config = NumeralConfig.instance();
 			return YetAnotherConfigLib.createBuilder()
-					.title(TITLE)
+					.title(Text.of(NumeralPingMod.NAME))
 
 					.category(ConfigCategory.createBuilder()
-							.name(TITLE)
+							.name(Text.of(NumeralPingMod.NAME))
 
 							// Player List
 							.option(Option.<Boolean>createBuilder()
