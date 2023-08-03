@@ -20,7 +20,7 @@ import java.nio.file.Path;
 public final class NumeralPingMod implements ClientModInitializer {
 
 	public static final String ID = "numeralping";
-	public static String NAME = FabricLoader.getInstance().getModContainer(ID).get().getMetadata().getName();
+	public static final String NAME = FabricLoader.getInstance().getModContainer(ID).get().getMetadata().getName();
 	public static final Logger LOGGER = LoggerFactory.getLogger(NumeralPingMod.class);
 
 	private static NumeralPingMod instance;
