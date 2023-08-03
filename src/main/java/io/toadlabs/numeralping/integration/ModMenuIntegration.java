@@ -1,32 +1,36 @@
 package io.toadlabs.numeralping.integration;
 
-import static io.toadlabs.numeralping.NumeralPingMod.ID;
-
-import java.awt.Color;
-
-import com.terraformersmc.modmenu.api.*;
-
-import dev.isxander.yacl3.api.*;
-import dev.isxander.yacl3.api.controller.*;
-import dev.isxander.yacl3.gui.controllers.*;
-import dev.isxander.yacl3.gui.controllers.string.number.IntegerFieldController;
+import com.terraformersmc.modmenu.api.ConfigScreenFactory;
+import com.terraformersmc.modmenu.api.ModMenuApi;
+import dev.isxander.yacl3.api.ConfigCategory;
+import dev.isxander.yacl3.api.Option;
+import dev.isxander.yacl3.api.OptionDescription;
+import dev.isxander.yacl3.api.YetAnotherConfigLib;
+import dev.isxander.yacl3.api.controller.ColorControllerBuilder;
+import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import io.toadlabs.numeralping.NumeralPingMod;
 import io.toadlabs.numeralping.config.NumeralConfig;
 import net.minecraft.text.Text;
 
+import java.awt.*;
+
+import static io.toadlabs.numeralping.NumeralPingMod.ID;
+
 public final class ModMenuIntegration implements ModMenuApi {
 
 	public static final String OPTION = ID + ".option";
+	private static final Text TITLE = Text.of("Numeral Ping");
 
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
 		return (parent) -> {
 			NumeralConfig config = NumeralConfig.instance();
 			return YetAnotherConfigLib.createBuilder()
-					.title(Text.translatable(ID + ".title"))
+					.title(TITLE)
 
 					.category(ConfigCategory.createBuilder()
-							.name(Text.translatable(ID + ".title"))
+							.name(TITLE)
 
 							// Player List
 							.option(Option.<Boolean>createBuilder()
