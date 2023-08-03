@@ -1,19 +1,24 @@
 package io.toadlabs.numeralping.mixin;
 
-import java.util.List;
-
-import org.spongepowered.asm.mixin.*;
-import org.spongepowered.asm.mixin.injection.*;
-
 import io.toadlabs.numeralping.config.NumeralConfig;
 import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
 import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.multiplayer.*;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget;
 import net.minecraft.client.network.ServerInfo;
-import net.minecraft.text.*;
+import net.minecraft.text.Text;
+import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
+import org.spongepowered.asm.mixin.Final;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.Unique;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Redirect;
+
+import java.util.List;
 
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
@@ -65,6 +70,7 @@ public class ServerEntryMixin {
 		instance.drawTexture(id, x, y, u, v, width, height, textureWidth, textureHeight);
 	}
 
+	@Unique
 	private String getPingText(NumeralConfig config, long ping) {
 		return config.shiftPing(Long.toString(ping));
 	}
