@@ -53,9 +53,8 @@ public final class NumeralConfig {
 			for (int index = 0; index < string.length(); index++) {
 				characters[index] = string.charAt(index);
 
-				if (Character.isDigit(characters[index])) {
+				if (characters[index] >= '0' && characters[index] <= '9')
 					characters[index] += 8272;
-				}
 			}
 
 			return String.valueOf(characters);

@@ -25,55 +25,54 @@ import java.util.List;
 @Mixin(value = MultiplayerServerListWidget.ServerEntry.class, priority = 0)
 public class ServerEntryMixin {
 
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
-	public void shiftText(Args args) {
-		NumeralConfig config = NumeralConfig.instance();
+    @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
+    public void shiftText(Args args) {
+        NumeralConfig config = NumeralConfig.instance();
 
-		if (config.serverList) {
-			args.set(2, ((int) args.get(2)) + 10 - client.textRenderer.getWidth(getPingText(config, server.ping)));
-		}
-	}
+        if (config.serverList) {
+            args.set(2, ((int) args.get(2)) + 10 - client.textRenderer.getWidth(getPingText(config, server.ping)));
+        }
+    }
 
-	// hide the tooltip if it's redundant
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"), require = 0)
-	public void setTooltip(Args args) {
-		var tooltip = (List<Text>) args.get(0);
-		if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList && tooltip.get(0).getContent() instanceof TranslatableTextContent translatable && translatable.getKey().equals("multiplayer.status.ping")) {
-			args.set(0, null);
-		}
-	}
+    // hide the tooltip if it's redundant
+    @ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"), require = 0)
+    public void setTooltip(Args args) {
+        var tooltip = (List<Text>) args.get(0);
+        if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList && tooltip.get(0).getContent() instanceof TranslatableTextContent translatable && translatable.getKey().equals("multiplayer.status.ping")) {
+            args.set(0, null);
+        }
+    }
 
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTexture(Lnet/minecraft/util/Identifier;IIFFIIII)V", ordinal = 0))
-	public void renderDetailedLatency(DrawContext instance, Identifier id, int x, int y, float u, float v, int width,
-			int height, int textureWidth, int textureHeight) {
-		NumeralConfig config = NumeralConfig.instance();
+    @Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0))
+    public void renderDetailedLatency(DrawContext instance, Identifier texture, int x, int y, int width, int height) {
+        NumeralConfig config = NumeralConfig.instance();
 
-		if (server.ping >= 0 && config.serverList) {
-			String text = getPingText(config, server.ping);
+        if (server.ping >= 0 && config.serverList) {
+            String text = getPingText(config, server.ping);
 
-			if (config.smallPing) {
-				y--;
-			} else {
-				y++;
-			}
+            if (config.smallPing) {
+                y--;
+            } else {
+                y++;
+            }
 
-			instance.drawText(client.textRenderer, text, x + 11 - client.textRenderer.getWidth(text), y,
-					Utils.getPingColour((int) server.ping), false);
-			return;
-		}
+            instance.drawText(client.textRenderer, text, x + 11 - client.textRenderer.getWidth(text), y,
+                    Utils.getPingColour((int) server.ping), false);
+            return;
+        }
 
-		instance.drawTexture(id, x, y, u, v, width, height, textureWidth, textureHeight);
-	}
+        instance.drawGuiTexture(texture, x, y, width, height);
+    }
 
-	@Unique
-	private String getPingText(NumeralConfig config, long ping) {
-		return config.shiftPing(Long.toString(ping));
-	}
+    @Unique
+    private String getPingText(NumeralConfig config, long ping) {
+        return config.shiftPing(Long.toString(ping));
+    }
 
-	@Shadow
-	private @Final ServerInfo server;
+    @Shadow
+    private @Final ServerInfo server;
 
-	@Shadow
-	private @Final MinecraftClient client;
+    @Shadow
+    private @Final MinecraftClient client;
 
 }
