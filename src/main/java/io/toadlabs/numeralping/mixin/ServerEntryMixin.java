@@ -35,10 +35,10 @@ public class ServerEntryMixin {
 	}
 
 	// hide the tooltip if it's redundant
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"), require = 0)
+	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setTooltip(Ljava/util/List;)V"), require = 0)
 	public void setTooltip(Args args) {
-		var tooltip = (List<Text>) args.get(0);
-		if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList && tooltip.get(0).getContent() instanceof TranslatableTextContent translatable && translatable.getKey().equals("multiplayer.status.ping")) {
+		List<Text> tooltip = args.get(0);
+		if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList && tooltip.getFirst().getContent() instanceof TranslatableTextContent translatable && translatable.getKey().equals("multiplayer.status.ping")) {
 			args.set(0, null);
 		}
 	}
