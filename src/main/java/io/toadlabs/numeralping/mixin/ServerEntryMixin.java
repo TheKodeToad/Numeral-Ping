@@ -1,9 +1,11 @@
 package io.toadlabs.numeralping.mixin;
 
+import com.llamalad7.mixinextras.injector.v2.WrapWithCondition;
 import io.toadlabs.numeralping.config.NumeralConfig;
 import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
+import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget;
 import net.minecraft.client.network.ServerInfo;
 import net.minecraft.text.Text;
@@ -17,8 +19,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
-
-import java.util.List;
 
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
@@ -35,12 +35,9 @@ public class ServerEntryMixin {
 	}
 
 	// hide the tooltip if it's redundant
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setMultiplayerScreenTooltip(Ljava/util/List;)V"), require = 0)
-	public void setTooltip(Args args) {
-		var tooltip = (List<Text>) args.get(0);
-		if (tooltip != null && tooltip.size() == 1 && NumeralConfig.instance().serverList && tooltip.get(0).getContent() instanceof TranslatableTextContent translatable && translatable.getKey().equals("multiplayer.status.ping")) {
-			args.set(0, null);
-		}
+	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screen/multiplayer/MultiplayerScreen;setTooltip(Lnet/minecraft/text/Text;)V"))
+	public boolean hideTooltip(MultiplayerScreen instance, Text text) {
+		return !(NumeralConfig.instance().serverList && text.getContent() instanceof TranslatableTextContent content && content.getKey().equalsIgnoreCase("multiplayer.status.ping"));
 	}
 
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0))
