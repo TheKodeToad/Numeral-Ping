@@ -48,10 +48,8 @@ public final class NumeralPingMod implements ClientModInitializer {
 		saveConfig();
 
 		ModContainer container = FabricLoader.getInstance().getModContainer(ID).get();
-		ResourceManagerHelper.registerBuiltinResourcePack(new Identifier(ID, "font_fix"), container,
-				ResourcePackActivationType.NORMAL);
-		ResourceManagerHelper.registerBuiltinResourcePack(new Identifier(ID, "font_fix_high_res"), container,
-				ResourcePackActivationType.NORMAL);
+		ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of(ID, "font_fix"), container, ResourcePackActivationType.NORMAL);
+		ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of(ID, "font_fix_high_res"), container, ResourcePackActivationType.NORMAL);
 	}
 
 	public void saveConfig() {
