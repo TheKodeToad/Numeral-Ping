@@ -56,7 +56,7 @@ public final class NumeralPingMod implements ClientModInitializer {
 		try {
 			config.save(configFile);
 		} catch (IOException error) {
-			LOGGER.error("Failed to read config", error);
+			LOGGER.error("Failed to save config", error);
 		}
 	}
 

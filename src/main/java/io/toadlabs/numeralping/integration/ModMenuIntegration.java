@@ -23,7 +23,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 	@Override
 	public ConfigScreenFactory<?> getModConfigScreenFactory() {
-		return (parent) -> {
+		return parent -> {
 			NumeralConfig config = NumeralConfig.instance();
 			return YetAnotherConfigLib.createBuilder()
 					.title(Text.of(NumeralPingMod.NAME))
@@ -37,7 +37,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".playerList.desc")))
 									.binding(NumeralConfig.DEFAULTS.playerList,
 											() -> config.playerList,
-											(value) -> config.playerList = value)
+											value -> config.playerList = value)
 									.controller(TickBoxControllerBuilder::create)
 									.build())
 
@@ -47,7 +47,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".serverList.desc")))
 									.binding(NumeralConfig.DEFAULTS.serverList,
 											() -> config.serverList,
-											(value) -> config.serverList = value)
+											value -> config.serverList = value)
 									.controller(TickBoxControllerBuilder::create)
 									.build())
 
@@ -57,7 +57,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".smallPing.desc")))
 									.binding(NumeralConfig.DEFAULTS.smallPing,
 											() -> config.smallPing,
-											(value) -> config.smallPing = value)
+											value -> config.smallPing = value)
 									.controller(TickBoxControllerBuilder::create)
 									.build())
 
@@ -69,7 +69,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".defaultPingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.defaultPingThreshold,
 											() -> config.defaultPingThreshold,
-											(value) -> config.defaultPingThreshold = value)
+											value -> config.defaultPingThreshold = value)
 									.controller(IntegerFieldControllerBuilder::create)
 									.build())
 
@@ -79,7 +79,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".levelOnePingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingThreshold,
 											() -> config.levelOnePingThreshold,
-											(value) -> config.levelOnePingThreshold = value)
+											value -> config.levelOnePingThreshold = value)
 									.controller(IntegerFieldControllerBuilder::create)
 									.build())
 
@@ -89,7 +89,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".levelTwoPingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingThreshold,
 											() -> config.levelTwoPingThreshold,
-											(value) -> config.levelTwoPingThreshold = value)
+											value -> config.levelTwoPingThreshold = value)
 									.controller(IntegerFieldControllerBuilder::create)
 									.build())
 
@@ -99,7 +99,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".levelThreePingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingThreshold,
 											() -> config.levelThreePingThreshold,
-											(value) -> config.levelThreePingThreshold = value)
+											value -> config.levelThreePingThreshold = value)
 									.controller(IntegerFieldControllerBuilder::create)
 									.build())
 
@@ -108,7 +108,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.name(Text.translatable(OPTION + ".defaultPingColour"))
 									.binding(NumeralConfig.DEFAULTS.defaultPingColour,
 											() -> config.defaultPingColour,
-											(value) -> config.defaultPingColour = value)
+											value -> config.defaultPingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
@@ -117,7 +117,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.name(Text.translatable(OPTION + ".levelOnePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingColour,
 											() -> config.levelOnePingColour,
-											(value) -> config.levelOnePingColour = value)
+											value -> config.levelOnePingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
@@ -126,7 +126,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.name(Text.translatable(OPTION + ".levelTwoPingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingColour,
 											() -> config.levelTwoPingColour,
-											(value) -> config.levelTwoPingColour = value)
+											value -> config.levelTwoPingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
@@ -135,7 +135,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.name(Text.translatable(OPTION + ".levelThreePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingColour,
 											() -> config.levelThreePingColour,
-											(value) -> config.levelThreePingColour = value)
+											value -> config.levelThreePingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
@@ -145,7 +145,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.description(OptionDescription.of(Text.translatable(OPTION + ".levelFourPingColour.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelFourPingColour,
 											() -> config.levelFourPingColour,
-											(value) -> config.levelFourPingColour = value)
+											value -> config.levelFourPingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
@@ -154,7 +154,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 									.name(Text.translatable(OPTION + ".levelFivePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelFivePingColour,
 											() -> config.levelFivePingColour,
-											(value) -> config.levelFivePingColour = value)
+											value -> config.levelFivePingColour = value)
 									.controller(ColorControllerBuilder::create)
 									.build())
 
