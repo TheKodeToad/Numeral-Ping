@@ -8,6 +8,7 @@ import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerScreen;
 import net.minecraft.client.gui.screen.multiplayer.MultiplayerServerListWidget;
 import net.minecraft.client.network.ServerInfo;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.text.TranslatableTextContent;
 import net.minecraft.util.Identifier;
@@ -19,6 +20,8 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
+
+import java.util.function.Function;
 
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
@@ -40,8 +43,13 @@ public class ServerEntryMixin {
 		return !(NumeralConfig.instance().serverList && text.getContent() instanceof TranslatableTextContent content && content.getKey().equalsIgnoreCase("multiplayer.status.ping"));
 	}
 
-	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Lnet/minecraft/util/Identifier;IIII)V", ordinal = 0))
-	public void renderDetailedLatency(DrawContext instance, Identifier texture, int x, int y, int width, int height) {
+	@Redirect(
+			method = "render",
+			at = @At(
+					value = "INVOKE",
+					target = "Lnet/minecraft/client/gui/DrawContext;drawGuiTexture(Ljava/util/function/Function;Lnet/minecraft/util/Identifier;IIII)V",
+					ordinal = 0))
+	public void renderDetailedLatency(DrawContext instance, Function<Identifier, RenderLayer> renderLayers, Identifier texture, int x, int y, int width, int height) {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (server.ping >= 0 && config.serverList) {
@@ -58,7 +66,7 @@ public class ServerEntryMixin {
 			return;
 		}
 
-		instance.drawGuiTexture(texture, x, y, width, height);
+		instance.drawGuiTexture(renderLayers, texture, x, y, width, height);
 	}
 
 	@Unique
