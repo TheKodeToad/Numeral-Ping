@@ -28,7 +28,7 @@ import java.util.function.Function;
 @Mixin(value = MultiplayerServerListWidget.ServerEntry.class, priority = 0)
 public class ServerEntryMixin {
 
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawText(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;IIIZ)I", ordinal = 0))
+	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/DrawContext;drawTextWithShadow(Lnet/minecraft/client/font/TextRenderer;Lnet/minecraft/text/Text;III)I", ordinal = 0))
 	public void shiftText(Args args) {
 		NumeralConfig config = NumeralConfig.instance();
 
