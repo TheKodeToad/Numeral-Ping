@@ -25,14 +25,13 @@ public class PlayerListHudMixin {
 			String pingString = Integer.toString(entry.getLatency());
 			pingString = config.shiftPing(pingString);
 
-			context.getMatrices().push();
-			context.getMatrices().translate(0, 0, 100);
+			context.getMatrices().pushMatrix();
 
 			context.drawTextWithShadow(client.textRenderer, pingString,
 					x + width - client.textRenderer.getWidth(pingString) - 1, y - (config.smallPing ? 2 : 0),
 					Utils.getPingColour(entry.getLatency()));
 
-			context.getMatrices().pop();
+			context.getMatrices().popMatrix();
 		}
 	}
 
