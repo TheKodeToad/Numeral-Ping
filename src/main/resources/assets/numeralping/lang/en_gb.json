@@ -5,6 +5,8 @@
   "numeralping.option.serverList.desc": "Enable numeral ping in the server list.",
   "numeralping.option.smallPing": "Small Ping",
   "numeralping.option.smallPing.desc": "Shrink the ping text using alternative Unicode characters.",
+  "numeralping.option.pingFormat": "Ping Format",
+  "numeralping.option.pingFormat.desc": "Define a custom format for the displayed ping.\n\nUse %p as a placeholder for the numeric ping.",
   "numeralping.option.defaultPingThreshold": "Default Threshold",
   "numeralping.option.defaultPingThreshold.desc": "Highest ping value for the default colour.",
   "numeralping.option.levelOnePingThreshold": "Level One Threshold",
