@@ -8,6 +8,7 @@ import dev.isxander.yacl3.api.OptionDescription;
 import dev.isxander.yacl3.api.YetAnotherConfigLib;
 import dev.isxander.yacl3.api.controller.ColorControllerBuilder;
 import dev.isxander.yacl3.api.controller.IntegerFieldControllerBuilder;
+import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import io.toadlabs.numeralping.NumeralPingMod;
 import io.toadlabs.numeralping.config.NumeralConfig;
@@ -60,6 +61,16 @@ public final class ModMenuIntegration implements ModMenuApi {
 											value -> config.smallPing = value)
 									.controller(TickBoxControllerBuilder::create)
 									.build())
+
+							// Ping Format
+							.option(Option.<String>createBuilder()
+								.name(Text.translatable(OPTION + ".pingFormat"))
+								.description(OptionDescription.of(Text.translatable(OPTION + ".pingFormat.desc")))
+								.binding(NumeralConfig.DEFAULTS.pingFormat,
+									() -> config.pingFormat,
+									value -> config.pingFormat = value)
+								.controller(StringControllerBuilder::create)
+								.build())
 
 							// Ping Thresholds
 

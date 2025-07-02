@@ -22,8 +22,7 @@ public class PlayerListHudMixin {
 		if (config.playerList) {
 			callback.cancel();
 
-			String pingString = Integer.toString(entry.getLatency());
-			pingString = config.shiftPing(pingString);
+			String pingString = Utils.getPingText(entry.getLatency());
 
 			context.getMatrices().pushMatrix();
 
