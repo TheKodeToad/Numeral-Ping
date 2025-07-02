@@ -32,7 +32,7 @@ public class PlayerListHudMixin {
 			maxPingWidth = Math.max(maxPingWidth, client.textRenderer.getWidth(pingString));
 		}
 
-		return a + maxPingWidth - vanillaPingWidth;
+		return original.call(a + maxPingWidth - vanillaPingWidth, b);
 	}
 
 	@Inject(method = "renderLatencyIcon", at = @At("HEAD"), cancellable = true)
