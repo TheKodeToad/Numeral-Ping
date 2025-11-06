@@ -12,9 +12,8 @@ import dev.isxander.yacl3.api.controller.StringControllerBuilder;
 import dev.isxander.yacl3.api.controller.TickBoxControllerBuilder;
 import io.toadlabs.numeralping.NumeralPingMod;
 import io.toadlabs.numeralping.config.NumeralConfig;
-import net.minecraft.text.Text;
-
 import java.awt.*;
+import net.minecraft.network.chat.Component;
 
 import static io.toadlabs.numeralping.NumeralPingMod.ID;
 
@@ -27,15 +26,15 @@ public final class ModMenuIntegration implements ModMenuApi {
 		return parent -> {
 			NumeralConfig config = NumeralConfig.instance();
 			return YetAnotherConfigLib.createBuilder()
-					.title(Text.of(NumeralPingMod.NAME))
+					.title(Component.nullToEmpty(NumeralPingMod.NAME))
 
 					.category(ConfigCategory.createBuilder()
-							.name(Text.of(NumeralPingMod.NAME))
+							.name(Component.nullToEmpty(NumeralPingMod.NAME))
 
 							// Player List
 							.option(Option.<Boolean>createBuilder()
-									.name(Text.translatable(OPTION + ".playerList"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".playerList.desc")))
+									.name(Component.translatable(OPTION + ".playerList"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".playerList.desc")))
 									.binding(NumeralConfig.DEFAULTS.playerList,
 											() -> config.playerList,
 											value -> config.playerList = value)
@@ -44,8 +43,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Server List
 							.option(Option.<Boolean>createBuilder()
-									.name(Text.translatable(OPTION + ".serverList"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".serverList.desc")))
+									.name(Component.translatable(OPTION + ".serverList"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".serverList.desc")))
 									.binding(NumeralConfig.DEFAULTS.serverList,
 											() -> config.serverList,
 											value -> config.serverList = value)
@@ -54,8 +53,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Small Ping
 							.option(Option.<Boolean>createBuilder()
-									.name(Text.translatable(OPTION + ".smallPing"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".smallPing.desc")))
+									.name(Component.translatable(OPTION + ".smallPing"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".smallPing.desc")))
 									.binding(NumeralConfig.DEFAULTS.smallPing,
 											() -> config.smallPing,
 											value -> config.smallPing = value)
@@ -76,8 +75,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Default
 							.option(Option.<Integer>createBuilder()
-									.name(Text.translatable(OPTION + ".defaultPingThreshold"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".defaultPingThreshold.desc")))
+									.name(Component.translatable(OPTION + ".defaultPingThreshold"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".defaultPingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.defaultPingThreshold,
 											() -> config.defaultPingThreshold,
 											value -> config.defaultPingThreshold = value)
@@ -86,8 +85,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// levelOnePingThreshold
 							.option(Option.<Integer>createBuilder()
-									.name(Text.translatable(OPTION + ".levelOnePingThreshold"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".levelOnePingThreshold.desc")))
+									.name(Component.translatable(OPTION + ".levelOnePingThreshold"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".levelOnePingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingThreshold,
 											() -> config.levelOnePingThreshold,
 											value -> config.levelOnePingThreshold = value)
@@ -96,8 +95,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// levelTwoPingThreshold
 							.option(Option.<Integer>createBuilder()
-									.name(Text.translatable(OPTION + ".levelTwoPingThreshold"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".levelTwoPingThreshold.desc")))
+									.name(Component.translatable(OPTION + ".levelTwoPingThreshold"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".levelTwoPingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingThreshold,
 											() -> config.levelTwoPingThreshold,
 											value -> config.levelTwoPingThreshold = value)
@@ -106,8 +105,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// levelThreePingThreshold
 							.option(Option.<Integer>createBuilder()
-									.name(Text.translatable(OPTION + ".levelThreePingThreshold"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".levelThreePingThreshold.desc")))
+									.name(Component.translatable(OPTION + ".levelThreePingThreshold"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".levelThreePingThreshold.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingThreshold,
 											() -> config.levelThreePingThreshold,
 											value -> config.levelThreePingThreshold = value)
@@ -116,7 +115,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < defaultPingThreshold Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".defaultPingColour"))
+									.name(Component.translatable(OPTION + ".defaultPingColour"))
 									.binding(NumeralConfig.DEFAULTS.defaultPingColour,
 											() -> config.defaultPingColour,
 											value -> config.defaultPingColour = value)
@@ -125,7 +124,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelOnePingThreshold Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".levelOnePingColour"))
+									.name(Component.translatable(OPTION + ".levelOnePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelOnePingColour,
 											() -> config.levelOnePingColour,
 											value -> config.levelOnePingColour = value)
@@ -134,7 +133,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelTwoPingThreshold Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".levelTwoPingColour"))
+									.name(Component.translatable(OPTION + ".levelTwoPingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelTwoPingColour,
 											() -> config.levelTwoPingColour,
 											value -> config.levelTwoPingColour = value)
@@ -143,7 +142,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping < levelThreePingThreshold Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".levelThreePingColour"))
+									.name(Component.translatable(OPTION + ".levelThreePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelThreePingColour,
 											() -> config.levelThreePingColour,
 											value -> config.levelThreePingColour = value)
@@ -152,8 +151,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping ≥ levelThreePingThreshold Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".levelFourPingColour"))
-									.description(OptionDescription.of(Text.translatable(OPTION + ".levelFourPingColour.desc")))
+									.name(Component.translatable(OPTION + ".levelFourPingColour"))
+									.description(OptionDescription.of(Component.translatable(OPTION + ".levelFourPingColour.desc")))
 									.binding(NumeralConfig.DEFAULTS.levelFourPingColour,
 											() -> config.levelFourPingColour,
 											value -> config.levelFourPingColour = value)
@@ -162,7 +161,7 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Timed Out Ping Colour
 							.option(Option.<Color>createBuilder()
-									.name(Text.translatable(OPTION + ".levelFivePingColour"))
+									.name(Component.translatable(OPTION + ".levelFivePingColour"))
 									.binding(NumeralConfig.DEFAULTS.levelFivePingColour,
 											() -> config.levelFivePingColour,
 											value -> config.levelFivePingColour = value)
