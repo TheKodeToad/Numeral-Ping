@@ -63,8 +63,8 @@ public final class ModMenuIntegration implements ModMenuApi {
 
 							// Ping Format
 							.option(Option.<String>createBuilder()
-								.name(Text.translatable(OPTION + ".pingFormat"))
-								.description(OptionDescription.of(Text.translatable(OPTION + ".pingFormat.desc")))
+								.name(Component.translatable(OPTION + ".pingFormat"))
+								.description(OptionDescription.of(Component.translatable(OPTION + ".pingFormat.desc")))
 								.binding(NumeralConfig.DEFAULTS.pingFormat,
 									() -> config.pingFormat,
 									value -> config.pingFormat = value)

@@ -29,7 +29,7 @@ public class ServerEntryMixin {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (config.serverList) {
-			args.set(2, ((int) args.get(2)) + 10 - client.textRenderer.getWidth(Utils.getPingText(server.ping)));
+			args.set(2, ((int) args.get(2)) + 10 - minecraft.font.width(Utils.getPingText(serverData.ping)));
 		}
 	}
 
@@ -48,8 +48,8 @@ public class ServerEntryMixin {
 	public void renderDetailedLatency(GuiGraphics instance, RenderPipeline pipeline, ResourceLocation sprite, int x, int y, int width, int height) {
 		NumeralConfig config = NumeralConfig.instance();
 
-		if (server.ping >= 0 && config.serverList) {
-			String text = Utils.getPingText(server.ping);
+		if (serverData.ping >= 0 && config.serverList) {
+			String text = Utils.getPingText(serverData.ping);
 
 			if (config.smallPing) {
 				y--;

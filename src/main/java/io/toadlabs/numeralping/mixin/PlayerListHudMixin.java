@@ -24,7 +24,7 @@ public class PlayerListHudMixin {
 		int vanillaPingWidth = 9;
 		int maxPingWidth = vanillaPingWidth;
 
-		for (PlayerListEntry playerListEntry : playerListEntries) {
+		for (PlayerInfo playerListEntry : playerListEntries) {
 			String pingString = Utils.getPingText(playerListEntry.getLatency());
 
 			maxPingWidth = Math.max(maxPingWidth, minecraft.font.width(pingString));
