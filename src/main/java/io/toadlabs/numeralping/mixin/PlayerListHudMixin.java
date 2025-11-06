@@ -26,8 +26,7 @@ public class PlayerListHudMixin {
 		int maxPingWidth = vanillaPingWidth;
 
 		for (PlayerListEntry playerListEntry : playerListEntries) {
-			String pingString = Integer.toString(playerListEntry.getLatency());
-			pingString = config.shiftPing(pingString);
+			String pingString = Utils.getPingText(playerListEntry.getLatency());
 
 			maxPingWidth = Math.max(maxPingWidth, client.textRenderer.getWidth(pingString));
 		}
