@@ -15,11 +15,11 @@
    "numeralping.option.levelTwoPingThreshold.desc": "Höchster Ping-Wert für die Farbe der Ebene zwei.",
    "numeralping.option.levelThreePingThreshold": "Grenzwert der Stufe drei",
    "numeralping.option.levelThreePingThreshold.desc": "Höchster Ping-Wert für die Farbe der Stufe drei.",
-   "numeralping.option.defaultPingColor": "Standard-Ping-Farbe",
-   "numeralping.option.levelOnePingColor": "Ping-Farbe der Stufe Eins",
-   "numeralping.option.levelTwoPingColor": "Ping-Farbe der zweiten Stufe",
-   "numeralping.option.levelThreePingColor": "Ping-Farbe der Stufe drei",
-   "numeralping.option.levelFourPingColor": "Ping-Farbe der Stufe vier",
-   "numeralping.option.levelFourPingColor.desc": "Alles höher als Stufe drei.",
-   "numeralping.option.levelFivePingColor": "Zeitüberschreitung"
+   "numeralping.option.defaultPingColour": "Standard-Ping-Farbe",
+   "numeralping.option.levelOnePingColour": "Ping-Farbe der Stufe Eins",
+   "numeralping.option.levelTwoPingColour": "Ping-Farbe der zweiten Stufe",
+   "numeralping.option.levelThreePingColour": "Ping-Farbe der Stufe drei",
+   "numeralping.option.levelFourPingColour": "Ping-Farbe der Stufe vier",
+   "numeralping.option.levelFourPingColour.desc": "Alles höher als Stufe drei.",
+   "numeralping.option.levelFivePingColour": "Zeitüberschreitung"
 }
