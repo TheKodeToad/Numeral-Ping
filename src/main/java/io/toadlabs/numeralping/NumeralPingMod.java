@@ -8,7 +8,7 @@ import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
 import net.fabricmc.loader.api.FabricLoader;
 import net.fabricmc.loader.api.ModContainer;
-import net.minecraft.util.Identifier;
+import net.minecraft.resources.ResourceLocation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -48,8 +48,8 @@ public final class NumeralPingMod implements ClientModInitializer {
 		saveConfig();
 
 		ModContainer container = FabricLoader.getInstance().getModContainer(ID).get();
-		ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of(ID, "font_fix"), container, ResourcePackActivationType.NORMAL);
-		ResourceManagerHelper.registerBuiltinResourcePack(Identifier.of(ID, "font_fix_high_res"), container, ResourcePackActivationType.NORMAL);
+		ResourceManagerHelper.registerBuiltinResourcePack(ResourceLocation.fromNamespaceAndPath(ID, "font_fix"), container, ResourcePackActivationType.NORMAL);
+		ResourceManagerHelper.registerBuiltinResourcePack(ResourceLocation.fromNamespaceAndPath(ID, "font_fix_high_res"), container, ResourcePackActivationType.NORMAL);
 	}
 
 	public void saveConfig() {
