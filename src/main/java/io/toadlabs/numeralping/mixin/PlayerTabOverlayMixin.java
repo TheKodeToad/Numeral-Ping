@@ -16,7 +16,7 @@ import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
 @Mixin(PlayerTabOverlay.class)
-public class PlayerListHudMixin {
+public class PlayerTabOverlayMixin {
 
 	@WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(II)I", ordinal = 0))
 	private int adjustTablistEntryWidth(int a, int b, Operation<Integer> original, @Local(ordinal = 0) List<PlayerInfo> playerListEntries) {

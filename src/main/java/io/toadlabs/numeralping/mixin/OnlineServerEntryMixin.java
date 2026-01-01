@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
 @Mixin(value = ServerSelectionList.OnlineServerEntry.class, priority = 0)
-public class ServerEntryMixin {
+public class OnlineServerEntryMixin {
 
 	@ModifyArgs(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
 	public void shiftText(Args args) {
