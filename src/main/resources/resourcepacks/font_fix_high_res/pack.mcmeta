@@ -1,6 +1,7 @@
 {
 	"pack": {
-		"pack_format": 42,
-		"description": "Fix for illegible/low-res font.\nThis is the high-res version."
+		"min_format": 75,
+		"max_format": 75,
+		"description": "Fix for illegible/low-res ping font if needed."
 	}
 }

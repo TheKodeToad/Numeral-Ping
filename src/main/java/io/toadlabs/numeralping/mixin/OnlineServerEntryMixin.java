@@ -10,7 +10,7 @@ import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -22,9 +22,9 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 // a priority of 2000 means it will apply later
 // this is combined with `require = 0` to allow other mods to apply more integral functionality first without the game crashing
 @Mixin(value = ServerSelectionList.OnlineServerEntry.class, priority = 0)
-public class ServerEntryMixin {
+public class OnlineServerEntryMixin {
 
-	@ModifyArgs(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
+	@ModifyArgs(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
 	public void shiftText(Args args) {
 		NumeralConfig config = NumeralConfig.instance();
 
@@ -34,18 +34,18 @@ public class ServerEntryMixin {
 	}
 
 	// hide the tooltip if it's redundant
-	@WrapWithCondition(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;setTooltipForNextFrame(Lnet/minecraft/network/chat/Component;II)V"))
+	@WrapWithCondition(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;setTooltipForNextFrame(Lnet/minecraft/network/chat/Component;II)V"))
 	public boolean hideTooltip(GuiGraphics instance, Component text, int x, int y) {
 		return !(NumeralConfig.instance().serverList && text.getContents() instanceof TranslatableContents content && content.getKey().equalsIgnoreCase("multiplayer.status.ping"));
 	}
 
 	@Redirect(
-			method = "render",
+			method = "renderContent",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/ResourceLocation;IIII)V",
+					target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V",
 					ordinal = 0))
-	public void renderDetailedLatency(GuiGraphics instance, RenderPipeline pipeline, ResourceLocation sprite, int x, int y, int width, int height) {
+	public void renderDetailedLatency(GuiGraphics instance, RenderPipeline pipeline, Identifier sprite, int x, int y, int width, int height) {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (serverData.ping >= 0 && config.serverList) {
