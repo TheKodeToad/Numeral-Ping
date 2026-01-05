@@ -14,7 +14,6 @@ import net.minecraft.resources.Identifier;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
-import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.Redirect;
@@ -30,7 +29,7 @@ public class OnlineServerEntryMixin {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (config.serverList) {
-			args.set(2, ((int) args.get(2)) + 10 - minecraft.font.width(getPingText(config, serverData.ping)));
+			args.set(2, ((int) args.get(2)) + 10 - minecraft.font.width(Utils.getPingText(serverData.ping)));
 		}
 	}
 
@@ -50,7 +49,7 @@ public class OnlineServerEntryMixin {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (serverData.ping >= 0 && config.serverList) {
-			String text = getPingText(config, serverData.ping);
+			String text = Utils.getPingText(serverData.ping);
 
 			if (config.smallPing) {
 				y--;
@@ -64,11 +63,6 @@ public class OnlineServerEntryMixin {
 		}
 
 		instance.blitSprite(pipeline, sprite, x, y, width, height);
-	}
-
-	@Unique
-	private String getPingText(NumeralConfig config, long ping) {
-		return config.shiftPing(Long.toString(ping));
 	}
 
 	@Shadow

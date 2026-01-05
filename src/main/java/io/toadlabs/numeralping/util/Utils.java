@@ -29,4 +29,33 @@ public final class Utils {
 		return colour.getRGB();
 	}
 
+	public static String getPingText(long latency) {
+		NumeralConfig config = NumeralConfig.instance();
+
+		String pingString = config.pingFormat.replace("%p", String.valueOf(latency));
+		pingString = shiftPing(pingString);
+
+		return pingString;
+	}
+
+	private static String shiftPing(String string) {
+		NumeralConfig config = NumeralConfig.instance();
+
+		if (config.smallPing) {
+			// based on numeric ping
+			char[] characters = new char[string.length()];
+
+			for (int index = 0; index < string.length(); index++) {
+				characters[index] = string.charAt(index);
+
+				if (characters[index] >= '0' && characters[index] <= '9')
+					characters[index] += 8272;
+			}
+
+			return String.valueOf(characters);
+		}
+
+		return string;
+	}
+
 }

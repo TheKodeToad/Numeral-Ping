@@ -5,6 +5,8 @@
    "numeralping.option.serverList.desc": "Zahlen-Ping in der Serverliste aktivieren.",
    "numeralping.option.smallPing": "Kleiner Ping",
    "numeralping.option.smallPing.desc": "Ping-Text mit alternativen Unicode-Zeichen verkleinern.",
+   "numeralping.option.pingFormat": "Ping Format",
+   "numeralping.option.pingFormat.desc": "Eigenes Format für den angezeigten Ping.\n\n%p kann als Platzhalter für den numerischen Ping verwendet werden.",
    "numeralping.option.defaultPingThreshold": "Standard Grenzwert",
    "numeralping.option.defaultPingThreshold.desc": "Höchster Ping-Wert für die Standardfarbe.",
    "numeralping.option.levelOnePingThreshold": "Grenzwert der Stufe Eins",
