@@ -11,14 +11,14 @@ import io.toadlabs.numeralping.config.NumeralConfig;
 import io.toadlabs.numeralping.util.Utils;
 import java.util.List;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.PlayerTabOverlay;
 import net.minecraft.client.multiplayer.PlayerInfo;
 
 @Mixin(PlayerTabOverlay.class)
 public class PlayerTabOverlayMixin {
 
-	@WrapOperation(method = "render", at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(II)I", ordinal = 0))
+	@WrapOperation(method = "extractRenderState", at = @At(value = "INVOKE", target = "Ljava/lang/Math;min(II)I", ordinal = 0))
 	private int adjustTablistEntryWidth(int a, int b, Operation<Integer> original, @Local(ordinal = 0) List<PlayerInfo> playerListEntries) {
 		NumeralConfig config = NumeralConfig.instance();
 		int vanillaPingWidth = 9;
@@ -34,8 +34,8 @@ public class PlayerTabOverlayMixin {
 		return original.call(a + maxPingWidth - vanillaPingWidth, b);
 	}
 
-	@Inject(method = "renderPingIcon", at = @At("HEAD"), cancellable = true)
-	public void renderDetailedLatency(GuiGraphics context, int width, int x, int y, PlayerInfo entry,
+	@Inject(method = "extractPingIcon", at = @At("HEAD"), cancellable = true)
+	public void renderDetailedLatency(GuiGraphicsExtractor context, int width, int x, int y, PlayerInfo entry,
 			CallbackInfo callback) {
 		NumeralConfig config = NumeralConfig.instance();
 
@@ -47,7 +47,7 @@ public class PlayerTabOverlayMixin {
 
 			context.pose().pushMatrix();
 
-			context.drawString(minecraft.font, pingString,
+			context.text(minecraft.font, pingString,
 					x + width - minecraft.font.width(pingString) - 1, y - (config.smallPing ? 2 : 0),
 					Utils.getPingColour(entry.getLatency()));
 

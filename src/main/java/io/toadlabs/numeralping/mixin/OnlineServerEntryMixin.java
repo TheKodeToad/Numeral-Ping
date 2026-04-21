@@ -5,7 +5,7 @@ import com.mojang.blaze3d.pipeline.RenderPipeline;
 import io.toadlabs.numeralping.config.NumeralConfig;
 import io.toadlabs.numeralping.util.Utils;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.network.chat.Component;
@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(value = ServerSelectionList.OnlineServerEntry.class, priority = 0)
 public class OnlineServerEntryMixin {
 
-	@ModifyArgs(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
+	@ModifyArgs(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
 	public void shiftText(Args args) {
 		NumeralConfig config = NumeralConfig.instance();
 
@@ -35,18 +35,18 @@ public class OnlineServerEntryMixin {
 	}
 
 	// hide the tooltip if it's redundant
-	@WrapWithCondition(method = "renderContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphics;setTooltipForNextFrame(Lnet/minecraft/network/chat/Component;II)V"))
-	public boolean hideTooltip(GuiGraphics instance, Component text, int x, int y) {
+	@WrapWithCondition(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;setTooltipForNextFrame(Lnet/minecraft/network/chat/Component;II)V"))
+	public boolean hideTooltip(GuiGraphicsExtractor instance, Component text, int x, int y) {
 		return !(NumeralConfig.instance().serverList && text.getContents() instanceof TranslatableContents content && content.getKey().equalsIgnoreCase("multiplayer.status.ping"));
 	}
 
 	@Redirect(
-			method = "renderContent",
+			method = "extractContent",
 			at = @At(
 					value = "INVOKE",
-					target = "Lnet/minecraft/client/gui/GuiGraphics;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V",
+					target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;blitSprite(Lcom/mojang/blaze3d/pipeline/RenderPipeline;Lnet/minecraft/resources/Identifier;IIII)V",
 					ordinal = 0))
-	public void renderDetailedLatency(GuiGraphics instance, RenderPipeline pipeline, Identifier sprite, int x, int y, int width, int height) {
+	public void renderDetailedLatency(GuiGraphicsExtractor instance, RenderPipeline pipeline, Identifier sprite, int x, int y, int width, int height) {
 		NumeralConfig config = NumeralConfig.instance();
 
 		if (serverData.ping >= 0 && config.serverList) {
@@ -58,7 +58,7 @@ public class OnlineServerEntryMixin {
 				y++;
 			}
 
-			instance.drawString(minecraft.font, text, x + 11 - minecraft.font.width(text), y,
+			instance.text(minecraft.font, text, x + 11 - minecraft.font.width(text), y,
 					Utils.getPingColour((int) serverData.ping), false);
 			return;
 		}
