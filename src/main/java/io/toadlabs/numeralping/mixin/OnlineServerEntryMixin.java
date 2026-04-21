@@ -25,7 +25,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(value = ServerSelectionList.OnlineServerEntry.class, priority = 0)
 public class OnlineServerEntryMixin {
 
-	@ModifyArgs(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;drawString(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0))
+	@ModifyArgs(method = "extractContent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;text(Lnet/minecraft/client/gui/Font;Lnet/minecraft/network/chat/Component;III)V", ordinal = 0), require = 1)
 	public void shiftText(Args args) {
 		NumeralConfig config = NumeralConfig.instance();
 
