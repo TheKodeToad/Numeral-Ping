@@ -28,6 +28,8 @@ public final class NumeralConfig {
 			levelTwoPingThreshold = 600,
 			levelThreePingThreshold = 1000;
 
+	public String pingFormat = "%p";
+
 	public static NumeralConfig instance() {
 		return NumeralPingMod.instance().getConfig();
 	}
@@ -43,24 +45,6 @@ public final class NumeralConfig {
 		try (Writer writer = new OutputStreamWriter(Files.newOutputStream(file), StandardCharsets.UTF_8)) {
 			GSON.toJson(this, writer);
 		}
-	}
-
-	public String shiftPing(String string) {
-		if (smallPing) {
-			// based on numeric ping
-			char[] characters = new char[string.length()];
-
-			for (int index = 0; index < string.length(); index++) {
-				characters[index] = string.charAt(index);
-
-				if (characters[index] >= '0' && characters[index] <= '9')
-					characters[index] += 8272;
-			}
-
-			return String.valueOf(characters);
-		}
-
-		return string;
 	}
 
 }

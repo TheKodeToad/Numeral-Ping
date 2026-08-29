@@ -25,8 +25,7 @@ public class PlayerTabOverlayMixin {
 		int maxPingWidth = vanillaPingWidth;
 
 		for (PlayerInfo playerListEntry : playerListEntries) {
-			String pingString = Integer.toString(playerListEntry.getLatency());
-			pingString = config.shiftPing(pingString);
+			String pingString = Utils.getPingText(playerListEntry.getLatency());
 
 			maxPingWidth = Math.max(maxPingWidth, minecraft.font.width(pingString));
 		}
@@ -42,8 +41,7 @@ public class PlayerTabOverlayMixin {
 		if (config.playerList) {
 			callback.cancel();
 
-			String pingString = Integer.toString(entry.getLatency());
-			pingString = config.shiftPing(pingString);
+			String pingString = Utils.getPingText(entry.getLatency());
 
 			context.pose().pushMatrix();
 
